@@ -45,7 +45,7 @@ function getAllData() {
 function updateData(id, name,description) {
   return new Promise((resolve, reject) => {
     const sql = 'UPDATE userdetails.employee SET name = ?,description= ? WHERE id = ?';
-    db.query(sql, [id, name,description], (err, result) => {
+    db.query(sql, [name,description,id], (err, result) => {
       if (err) {
         reject(err);
       } else {

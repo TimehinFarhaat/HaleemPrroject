@@ -2,15 +2,9 @@
 const myForm = document.getElementById("myForm");
 const mytable = document.getElementById("tableBody");
 getUsers();
-mytable.addEventListener('click', (e) => {
-  if(e.target.classList.contains('button'))
- {
-    console.log(e.target.id);
-    getUser(e.target.id);
-  }
-});
 
 
+var num=0;
 function getUsers() {
   fetch("http://localhost:3300/getall")
     .then((response) => {
@@ -21,14 +15,24 @@ function getUsers() {
         console.log(data);
         var s="";
         for (const user of data) {
-            s += `<td>${user.id}</td>
+          num++;
+            s += `<td>${num}</td>
             <td>${user.name}</td>
             <td>${user.description}</td>
-            <td><a class="btn btn-sm btn-primary button"  id="${user.id}">Detail</a></td>
+            <td><a class="btn btn-sm btn-primary button" id="${user.id}">Detail</a></td>
         </tr>`;
          
         }
            mytable.innerHTML=s;
+           console.log(mytable);
+           mytable.addEventListener('click', (e) => {
+            if(e.target.classList.contains('button'))
+           {
+             e.preventDefault();
+              console.log(e.target.id);
+               redirectPage(e.target.id);
+            }
+          });
       
     })
     .catch((error) => {
@@ -36,6 +40,16 @@ function getUsers() {
     });
 }
 
+let redirectPage = (id) => {
+
+
+  const baseUrl = 'widget.html'; // Replace this with your actual base URL
+  const urlWithQueryParam = `${baseUrl}?id=${id}`;
+  
+    console.log(urlWithQueryParam);
+
+   window.location.href = urlWithQueryParam;
+}
 
 
 

@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./database');
 app.use(cors());
-const { getDataById, getAllData,insertData } = require('./crud');
+const { getDataById, getAllData,insertData ,deleteData,updateData} = require('./crud');
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -106,11 +106,13 @@ app.post('/insert', async (req, res) => {
 // Update data endpoint
 app.put('/update/:id', async (req, res) => {
   try {
-    const { id } = req.params;
-    const {  name,description} = req.body;
+    const {id} = req.params;
+    const name = req.body.name;
+    const description = req.body.description;
     const updatedData = await updateData(id, name,description);
     res.json(updatedData);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: 'Error performing update operation' });
   }
 });
@@ -122,8 +124,9 @@ app.delete('/delete/:id', async (req, res) => {
     const { id } = req.params;
     const deletedData = await deleteData(id);
     res.json(deletedData);
+    console.log(deleteData);
   } catch (err) {
-    res.status(500).json({ error: 'Error performing delete operation' });
+    res.status(500).json({ error: 'Error performing delete operation'  });
   }
 });
 

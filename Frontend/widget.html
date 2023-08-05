@@ -29,6 +29,20 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Apply CSS styles to the div */
+        .custom-div {
+          padding: 10px;
+          max-width: 50%;
+          margin: 0 auto;
+          word-wrap: break-word;
+        }
+
+        .custom-flex-container {
+      display: flex;
+      justify-content: space-between;
+    }
+      </style>
 </head>
 
 <body>
@@ -96,18 +110,30 @@
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-12" style="height: 100vh;">
                         <div class="bg-secondary rounded h-100 p-4" >
-                            <h6 class="mb-6">Record full description</h6>
+                            <div class="custom-flex-container">
+                                <!-- First element at the beginning -->
+                                <h6 class="mb-6">Record full description</h6>
+                                <!-- Second element at the end -->
+                                <div class="">
+                                    <button class="bg-success" id="update">Update</button>
+                                    <button class="bg-danger" id="delete">Delete</button>
+                                </div>
+                              
+                              </div>
+                           
+                           
                             <div class="owl testimonial">
-                                <div class="testimonial-item text-center">
+                                <div class="testimonial-item text-center ">
                                     <img class="img-fluid rounded-circle mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
                                     <h5 class="mb-1" id="name"></h5>
-                                    <p>Profession</p>
-                                    <p class="mb-0" id="description"></p>
+                                    <!-- <p>Profession</p> -->
+                                    <div class="custom-div" id="description"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+              
             </div>
             <!-- Widget End -->
 
